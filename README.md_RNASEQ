@@ -1,0 +1,14 @@
+# RNA-Seq Pipeline
+
+## Overview
+This script automates RNA-Seq data processing, including:
+- Quality control (`FastQC`)
+- Read trimming (`Trim Galore`)
+- Alignment (`STAR`)
+- Read quantification (`featureCounts`)
+- Differential expression analysis (`DESeq2`)
+
+## Usage
+Make the script executable:
+```bash
+chmod +x rna_seq_pipeline.sh
