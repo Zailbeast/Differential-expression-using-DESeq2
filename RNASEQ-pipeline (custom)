@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# RNA-Seq Pipeline: QC, Trimming, Alignment, Quantification, and Differential Expression Analysis
+
+# Set working directories
+data_dir="/path/to/raw_data"
+out_dir="/path/to/output"
+ref_genome="/path/to/reference/genome"
+gtf_file="/path/to/annotation.gtf"
+threads=8
+
+mkdir -p "$out_dir/QC" "$out_dir/Trimmed" "$out_dir/Aligned" "$out_dir/Counts"
+
+# 1. Quality Control with FastQC
+echo "Running FastQC..."
+fastqc -t $threads -o "$out_dir/QC" "$data_dir"/*.fastq.gz || { echo "FastQC failed"; exit 1; }
+
+# 2. Trimming with Trim Galore
+echo "Trimming reads..."
+for sample in "$data_dir"/*_R1.fastq.gz; do
+    sample_base=$(basename "$sample" _R1.fastq.gz)
+    trim_galore --paired --fastqc --output_dir "$out_dir/Trimmed" "$data_dir/${sample_base}_R1.fastq.gz" "$data_dir/${sample_base}_R2.fastq.gz" || { echo "Trim Galore failed for $sample_base"; exit 1; }
+done
+
+# 3. Alignment with STAR
+echo "Aligning reads..."
+STAR --runThreadN $threads \
+     --genomeDir "$ref_genome" \
+     --readFilesIn "$out_dir/Trimmed"/*_val_1.fq.gz "$out_dir/Trimmed"/*_val_2.fq.gz \
+     --readFilesCommand zcat \
+     --outSAMtype BAM SortedByCoordinate \
+     --outFileNamePrefix "$out_dir/Aligned/" || { echo "STAR alignment failed"; exit 1; }
+
+# 4. Counting with featureCounts
+echo "Counting reads..."
+featureCounts -T $threads -a "$gtf_file" -o "$out_dir/Counts/counts.txt" "$out_dir/Aligned"/*.bam || { echo "featureCounts failed"; exit 1; }
+
+# 5. Differential Expression Analysis (Placeholder for R script)
+echo "Performing Differential Expression Analysis..."
+Rscript deseq2_analysis.R "$out_dir/Counts/counts.txt" || { echo "DESeq2 analysis failed"; exit 1; }
+
+echo "RNA-Seq Pipeline completed successfully!"
