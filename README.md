@@ -63,3 +63,10 @@ Getting Started
 
 Each module contains a README file explaining its purpose, dependencies, and usage instructions. Feel free to explore, contribute, or modify scripts as needed!
 
+_________________________________________________________________________________________
+
+##Installation of tools##
+
+I have provided the yaml files for these tools and you could just download these and make use of these for your pc as mentioned above. 
+
+
