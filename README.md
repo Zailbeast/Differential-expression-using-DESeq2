@@ -142,8 +142,8 @@ write.csv(as.data.frame(res), file="output/deseq2/deseq2_results.csv")
 You can clone this repository and follow the included README for step-by-step instructions:
 
 ```bash
-git clone https://github.com/your-username/rnaseq-workflow my_rnaseq_project
-cd my_rnaseq_project
+git clone https://github.com/Zailbeast/Genomics-Bioinformatics-Scripts-Repository.git/
+cd (Your repo)
 ```
 
 7. Additional Tips
