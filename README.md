@@ -23,14 +23,14 @@ Command Line Skills: Basic familiarity with terminal commands
 2. Installation Using Conda
 Install Miniconda (if not already installed):
 
-bash
-'''
+'''bash
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh'''
+bash Miniconda3-latest-Linux-x86_64.sh
+'''
 
 Create and activate an RNA-Seq environment:
 
-bash
+'''bash
 conda create -n rnaseq -c bioconda -c conda-forge fastqc trimmomatic star subread samtools multiqc salmon htseq
 conda activate rnaseq
 Install R and DESeq2:
