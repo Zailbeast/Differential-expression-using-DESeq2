@@ -24,8 +24,10 @@ Command Line Skills: Basic familiarity with terminal commands
 Install Miniconda (if not already installed):
 
 bash
+'''
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh'''
+
 Create and activate an RNA-Seq environment:
 
 bash
