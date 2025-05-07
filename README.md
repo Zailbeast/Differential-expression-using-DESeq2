@@ -1,4 +1,4 @@
-# This module is for people who want or are begining to work on RNASeq data. These tools and scripts will help you achive the desired results.
+# Differential expression using DESeq2.
 
 Please note that these scripts will be updated as I keep making chanmges and improving the scripts to give the best of the best.
 
